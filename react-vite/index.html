@@ -14,115 +14,94 @@
       }
 
       .container {
-        display: grid;
-        grid-template-columns: repeat(6, 1fr);
-        gap: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
         padding: 20px;
       }
 
       .box {
         border: 1px solid #ccc;
         border-radius: 8px;
-        overflow: hidden;
         text-align: center;
         background-color: #f9f9f9;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-      }
-
-      .box img {
-        width: 100%;
-        height: auto;
+        padding: 20px;
+        margin-bottom: 20px;
+        width: 300px;
       }
 
       .box-title {
-        font-size: 1.2rem;
+        font-size: 1.5rem;
         font-weight: bold;
-        padding: 10px 0;
-        background-color: #007acc;
-        color: white;
+        margin-bottom: 10px;
+        color: #007acc;
       }
 
       .box-description {
-        padding: 10px;
-        font-size: 0.9rem;
+        font-size: 1rem;
         color: #333;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-
-      .preview-image {
-        width: 100%;
-        height: 150px;
-        background-color: #ddd;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.9rem;
-        color: #666;
       }
 
       .footer {
-        grid-column: span 6;
         text-align: center;
         padding: 20px;
         background-color: #007acc;
         color: white;
         font-size: 1rem;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
       }
     </style>
   </head>
 
   <body>
-    <div class="container">
-      <!-- Sample boxes -->
+    <div class="container" id="login-page">
       <div class="box">
-        <div class="box-title">Title 1</div>
-        <div class="box-description">This is a description for the first URL. It may contain relevant information about
-          the content.</div>
-        <div class="preview-image">Image Preview Unavailable</div>
+        <div class="box-title">Login</div>
+        <div class="box-description">Please login to access the URL archiver features.</div>
       </div>
-
-      <div class="box">
-        <div class="box-title">Title 2</div>
-        <div class="box-description">This is a description for the second URL. It may contain relevant information about
-          the content.</div>
-        <img src="https://via.placeholder.com/300" alt="Preview Image">
-      </div>
-
-      <div class="box">
-        <div class="box-title">Title 3</div>
-        <div class="box-description">This is a description for the third URL. It may contain relevant information about
-          the content.</div>
-        <div class="preview-image">Image Preview Unavailable</div>
-      </div>
-
-      <div class="box">
-        <div class="box-title">Title 4</div>
-        <div class="box-description">This is a description for the fourth URL. It may contain relevant information about
-          the content.</div>
-        <img src="https://via.placeholder.com/300" alt="Preview Image">
-      </div>
-
-      <div class="box">
-        <div class="box-title">Title 5</div>
-        <div class="box-description">This is a description for the fifth URL. It may contain relevant information about
-          the content.</div>
-        <div class="preview-image">Image Preview Unavailable</div>
-      </div>
-
-      <div class="box">
-        <div class="box-title">Title 6</div>
-        <div class="box-description">This is a description for the sixth URL. It may contain relevant information about
-          the content.</div>
-        <img src="https://via.placeholder.com/300" alt="Preview Image">
-      </div>
-
-      <!-- Footer -->
-      <div class="footer">&copy; 2025 URL Archiver. All Rights Reserved.</div>
     </div>
+
+    <div class="container" id="url-input-page" style="display: none;">
+      <div class="box">
+        <div class="box-title">URL Input</div>
+        <div class="box-description">Enter a URL to start archiving its content.</div>
+      </div>
+    </div>
+
+    <div class="container" id="results-page" style="display: none;">
+      <div class="box">
+        <div class="box-title">Raw HTML</div>
+        <div class="box-description">Extract and view the raw HTML code from the entered URL.</div>
+      </div>
+      <div class="box">
+        <div class="box-title">PDF</div>
+        <div class="box-description">Generate a PDF containing text and images from the URL.</div>
+      </div>
+      <div class="box">
+        <div class="box-title">URL Input</div>
+        <div class="box-description">Enter a URL to start archiving its content.</div>
+      </div>
+    </div>
+
+    <div class="footer">&copy; 2025 URL Archiver. All Rights Reserved.</div>
+
+    <script>
+      // Example script to navigate between pages
+      function showPage ( pageId ) {
+        document.querySelectorAll( '.container' ).forEach( page => {
+          page.style.display = 'none';
+        } );
+        document.getElementById( pageId ).style.display = 'flex';
+      }
+
+      // Example usage
+      // showPage('url-input-page');
+      // showPage('results-page');
+    </script>
   </body>
 
 </html>
