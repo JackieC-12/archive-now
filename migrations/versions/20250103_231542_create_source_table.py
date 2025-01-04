@@ -18,7 +18,7 @@ depends_on = None
 
 def upgrade():
     op.create_table('sources',
-    sa.Column('archiveId', sa.ForeignKey('archives.id'), nullable=False),
+    sa.Column('archiveId', sa.Integer, sa.ForeignKey('archives.id'), nullable=False),
     sa.Column('fileLink', sa.String),
     sa.Column('rawHTML', sa.String, nullable=False),
     sa.Column('time_created', sa.DateTime)

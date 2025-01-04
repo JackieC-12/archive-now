@@ -22,7 +22,7 @@ def upgrade():
     sa.Column('userId', sa.Integer(), sa.ForeignKey("users.id"), nullable=False),
     sa.Column('url', sa.String(255), nullable=False),
     sa.Column('title', sa.String(25), nullable=False),
-    sa.Column('description', sa.String(), nulalble=False),
+    sa.Column('description', sa.String(), nullable=False),
     # sa.Column('time_created', sa.DateTime(timezone=True)),
     sa.PrimaryKeyConstraint('id')
     )
