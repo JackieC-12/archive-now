@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Archive Data</title>
+</head>
+<body>
+    <form method="get">
+        {{ form.csrf_token }}
+        <div>{{ archive.url }}</div>
+        <div>{{ archive.title}}</div>
+        <div>{{ archive.description }}</div>
+        <div>{{ archive.fileLink }}</div>
+    </form>
+</body>
+</html>

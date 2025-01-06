@@ -7,13 +7,29 @@ from app.api.aws_helpers import upload_file_to_s3, get_unique_filename, convert_
 
 archive_routes = Blueprint('archive', __name__, url_prefix='/archive')
 
-# '''
-# GET specific archive by ID
-# '''
-
 @archive_routes.route('/')
 def archive_home():
     return render_template("main_page.html")
+
+
+
+'''
+GET specific archive by ID
+'''
+@archive_routes.route('/<int:id>')
+def get_archive(id):
+    form = ArchiveForm()
+
+    archive = Archive.query.get(id)
+
+    context = {
+        'url': archive.url,
+        'title': archive.title,
+        'description': archive.description,
+        'fileLink': archive.fileLink
+    }
+
+    return render_template("simple_form_data.html", archive=context, form=form)
 
 '''
 POST new archive
@@ -45,4 +61,3 @@ def new_archive():
             db.session.commit()
             return redirect("/")
     return render_template("simple_form.html", form=form)
-
