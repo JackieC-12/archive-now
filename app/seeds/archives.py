@@ -11,9 +11,9 @@ def seed_archives():
     bobbieArchive = Archive(
         userId=3, url='http://www.onemorelevel.com/', title='Onemorelevel', description='I am going to die', fileLink='http://archive-now-bucket-pdf.s3.amazonaws.com/fdf86ad22dce49f5ab4fbdc62e0a567d.pdf')
     jackieArchive = Archive(
-        userId=3, url='https://steamcommunity.com/', title='Steam community website', description='I am going to die 2', fileLink='https://archive-now-bucket-pdf.s3.us-east-1.amazonaws.com/5bbaa5fc51ff4098bd374292f2b2d9fd.pdf')
+        userId=4, url='https://steamcommunity.com/', title='Steam community website', description='I am going to die 2', fileLink='https://archive-now-bucket-pdf.s3.us-east-1.amazonaws.com/5bbaa5fc51ff4098bd374292f2b2d9fd.pdf')
     jackieArchive2 = Archive(
-        userId=3, url='https://www.spacejam.com/1996/', title='Steam community website', description='I am going to die 2', fileLink='http://archive-now-bucket-pdf.s3.amazonaws.com/5f6be3ab433b487ea325e91576ba06eb.pdf')
+        userId=4, url='https://www.spacejam.com/1996/', title='Steam community website', description='I am going to die 2', fileLink='http://archive-now-bucket-pdf.s3.amazonaws.com/5f6be3ab433b487ea325e91576ba06eb.pdf')
 
 
     db.session.add(demoArchive)
