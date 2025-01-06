@@ -16,7 +16,4 @@ class Archive(db.Model):
     fileLink = db.Column(db.String)
 
     user = db.relationship("User", back_populates="archives")
-
-
-    # user = db.relationship("User", back_populates="archives")
-    # sources = db.relationship("Sources", back_populates="archives")
+    comments = db.relationship("Comment", back_populates="archive")
