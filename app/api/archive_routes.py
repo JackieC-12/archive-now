@@ -28,9 +28,7 @@ def get_user_archives():
 
     allUserArchives = Archive.query.filter(Archive.userId == current_user.id).all()
 
-    print(allUserArchives)
-
-    return render_template("main_page.html", archives=allUserArchives, form=form)
+    return render_template("simple_form_user_page.html", archives=allUserArchives, form=form)
 
 
 '''

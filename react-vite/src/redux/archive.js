@@ -13,15 +13,6 @@ const deleteArchive = (archive) => ({
 
 
 // Thunks for asynchronous actions
-export const fetchArchives = () => async (dispatch) => {
-    const response = await fetch('/archives')
-    if (response.ok) {
-        const data = await response.json();
-
-        console.log("Fetched archives data:", data)
-    }
-}
-
 export const removeArchive = (archiveId) => async (dispatch) => {
     const response = await fetch(`/archives/${archiveId}`, {
         method: 'DELETE'
