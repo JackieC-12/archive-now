@@ -5,7 +5,7 @@ from app.forms import ArchiveForm, EditArchiveForm
 from app.api.aws_helpers import upload_file_to_s3, get_unique_filename, remove_file_from_s3, PDF
 
 
-archive_routes = Blueprint('archive', __name__, url_prefix='/archive')
+archive_routes = Blueprint('archives', __name__, url_prefix='/archives')
 
 
 '''
@@ -18,6 +18,19 @@ def archive_home():
     allArchives = Archive.query.order_by(Archive.title).all()
 
     return render_template("main_page.html", archives=allArchives, form=form)
+
+'''
+GET all archives owned by User
+'''
+@archive_routes.route('/current')
+def get_user_archives():
+    form = ArchiveForm()
+
+    allUserArchives = Archive.query.filter(Archive.userId == current_user.id).all()
+
+    print(allUserArchives)
+
+    return render_template("main_page.html", archives=allUserArchives, form=form)
 
 
 '''
@@ -82,10 +95,9 @@ def delete_archive(id):
         if currArchive.userId == current_user.id:
             remove_file_from_s3(currArchive.fileLink)
             db.session.delete(currArchive)
-            return redirect('/archive/')
+            return { "message": 'Successfully Deleted'}, redirect('/archive/')
         else:
             return { "errors": 'Forbidden'}
-    return
 
 
 '''

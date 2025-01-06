@@ -6,7 +6,7 @@
     <title>Archive Data</title>
 </head>
 <body>
-    <form method="post" action="/new_instrument">
+    <form method="post">
         {{ form.csrf_token }}
         {% for archive in archives %}
         <div>{{ archive.url }}</div>
