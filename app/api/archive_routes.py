@@ -7,9 +7,17 @@ from app.api.aws_helpers import upload_file_to_s3, get_unique_filename, convert_
 
 archive_routes = Blueprint('archive', __name__, url_prefix='/archive')
 
+
+'''
+GET all archives
+'''
 @archive_routes.route('/')
 def archive_home():
-    return render_template("main_page.html")
+    form = ArchiveForm()
+
+    allArchives = Archive.query.order_by(Archive.title).all()
+
+    return render_template("main_page.html", archives=allArchives, form=form)
 
 
 
