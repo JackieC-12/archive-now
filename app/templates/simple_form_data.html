@@ -8,10 +8,29 @@
 <body>
     <form method="get">
         {{ form.csrf_token }}
-        <div>{{ archive.url }}</div>
-        <div>{{ archive.title}}</div>
-        <div>{{ archive.description }}</div>
-        <div>{{ archive.fileLink }}</div>
+        <div>{{ context.archive_username }}</div>
+        <div>{{ context.url }}</div>
+        <div>{{ context.title}}</div>
+        <div>{{ context.description }}</div>
+        <div>{{ context.fileLink }}</div>
+        <br>
+        {% if context.current_userId == context.archive_userId %}
+        <button id="myButton">Edit Archive</button>
+        <!--On button click insert edit archive template and add button to delete archive-->
+        {% endif %}
+        {% for comment in context.comments %}
+        <div>{{ comment.get("user") }}</div>
+        <div>{{ comment.get("message") }}</div>
+        <div>{{ comment.get('created_at') }}</div>
+        <br>
+        {% if context.userId == comment.get("userId")%}
+        <button>Edit Comment Button</button>
+        <!--On button click add form to edit comment and add button to delete comment-->
+        <br>
+        {% endif %}
+        {% endfor %}
     </form>
+
+
 </body>
 </html>

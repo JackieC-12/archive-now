@@ -1,7 +1,8 @@
 from flask import Blueprint, render_template, redirect, request
 from flask_login import current_user
-from app.models import Archive, db
+from app.models import Archive, db, User
 from app.forms import ArchiveForm, EditArchiveForm
+from app.api.comment_routes import get_comments
 from app.api.aws_helpers import upload_file_to_s3, get_unique_filename, remove_file_from_s3, PDF
 
 
@@ -39,15 +40,21 @@ def get_archive(id):
     form = ArchiveForm()
 
     archive = Archive.query.get(id)
+    archiveUser = User.query.get(archive.userId)
+
 
     context = {
+        'current_userId': current_user.id,
+        'archive_userId': archive.userId,
+        'archive_username': archiveUser.username,
         'url': archive.url,
         'title': archive.title,
         'description': archive.description,
-        'fileLink': archive.fileLink
+        'fileLink': archive.fileLink,
+        'comments': get_comments(id)
     }
 
-    return render_template("simple_form_data.html", archive=context, form=form)
+    return render_template("simple_form_data.html", context=context, form=form)
 
 
 '''
