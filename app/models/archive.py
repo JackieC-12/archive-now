@@ -9,7 +9,7 @@ class Archive(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    userId = db.Column(db.Integer, db.ForeignKey("users.id"))
+    userId = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     url = db.Column(db.String, nullable=False)
     title = db.Column(db.String(25), nullable=False)
     description = db.Column(db.String)
