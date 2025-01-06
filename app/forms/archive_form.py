@@ -4,8 +4,8 @@ from wtforms.validators import DataRequired, URL
 
 class ArchiveForm(FlaskForm):
     url = StringField(
-        'Website URL', validators=[DataRequired(), URL()]
+        'url', validators=[DataRequired(), URL()]
     )
-    title = StringField('Archive Name', validators=[DataRequired()])
-    description = StringField('Description of Archive')
+    title = StringField('title', validators=[DataRequired()])
+    description = StringField('description')
     submit = SubmitField('Submit')

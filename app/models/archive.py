@@ -13,7 +13,10 @@ class Archive(db.Model):
     url = db.Column(db.String, nullable=False)
     title = db.Column(db.String(25), nullable=False)
     description = db.Column(db.String)
-    # time_created = db.Column(db.DateTime(timezone=True), server_default=func.now())
+    fileLink = db.Column(db.String)
+
+    user = db.relationship("User", back_populates="archives")
+
 
     # user = db.relationship("User", back_populates="archives")
     # sources = db.relationship("Sources", back_populates="archives")
