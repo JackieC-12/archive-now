@@ -7,7 +7,7 @@ def seed_archives():
     demoArchive = Archive(
         userId=1, url='https://knowyourmeme.com', title='know your meme', description='example description', fileLink='https://archive-now-bucket-pdf.s3.us-east-1.amazonaws.com/ea97ed2280b34552bff9388f8b96d380.pdf')
     marnieArchive = Archive(
-        userId=2, url='https://warframe.com', title='Warframe website', description='Warframe website', fileLink='http://archive-now-bucket-pdf.s3.amazonaws.com/53e8649d9062492b860c4416177c5c1f.pdf')
+        userId=2, url='https://forums.warframe.com/', title='Warframe forums', description='Warframe forums', fileLink='http://archive-now-bucket-pdf.s3.amazonaws.com/53e8649d9062492b860c4416177c5c1f.pdf')
     bobbieArchive = Archive(
         userId=3, url='http://www.onemorelevel.com/', title='Onemorelevel', description='I am going to die', fileLink='http://archive-now-bucket-pdf.s3.amazonaws.com/fdf86ad22dce49f5ab4fbdc62e0a567d.pdf')
     jackieArchive = Archive(
