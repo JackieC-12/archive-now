@@ -51,6 +51,38 @@ def get_archive(id):
 
 
 '''
+POST new archive
+'''
+@archive_routes.route("/new", methods=["GET", "POST"])
+def new_archive():
+    form = ArchiveForm()
+
+    form["csrf_token"].data = request.cookies["csrf_token"]
+
+    if request.method == "POST":
+        if form.validate_on_submit():
+            archive = Archive()
+            form.populate_obj(archive)
+            archive.userId = current_user.id
+
+            filename = get_unique_filename(archive.title + '.pdf')
+            fileUrl = archive.url
+
+            newPDF = PDF(filename, fileUrl)
+
+            upload = upload_file_to_s3(newPDF)
+
+            print(upload)
+
+            archive.fileLink = upload["url"]
+
+            db.session.add(archive)
+            db.session.commit()
+            return redirect(f"/archive/{archive.id}")
+    return render_template("simple_form.html", form=form)
+
+
+'''
 PUT edit archive
 '''
 @archive_routes.route("/<int:id>/edit", methods=["GET", "POST"])
@@ -96,35 +128,3 @@ def delete_archive(id):
             return { "message": 'Successfully Deleted'}, redirect('/archive/')
         else:
             return { "errors": 'Forbidden'}
-
-
-'''
-POST new archive
-'''
-@archive_routes.route("/new", methods=["GET", "POST"])
-def new_archive():
-    form = ArchiveForm()
-
-    form["csrf_token"].data = request.cookies["csrf_token"]
-
-    if request.method == "POST":
-        if form.validate_on_submit():
-            archive = Archive()
-            form.populate_obj(archive)
-            archive.userId = current_user.id
-
-            filename = get_unique_filename(archive.title + '.pdf')
-            fileUrl = archive.url
-
-            newPDF = PDF(filename, fileUrl)
-
-            upload = upload_file_to_s3(newPDF)
-
-            print(upload)
-
-            archive.fileLink = upload["url"]
-
-            db.session.add(archive)
-            db.session.commit()
-            return redirect(f"/archive/{archive.id}")
-    return render_template("simple_form.html", form=form)
